@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	
+		<h:outputStylesheet name="css/style.css" />
+	
+</h:head> 
+<body> 
+	
+		
+		<h:outputLabel value="Second Sayfasına Ulaştınız." />
+		
+		<h:form>
+	
+			<h:inputHidden value="INPUTDEGERI" />
+			
+			<h:panelGrid columns="4" border="1" bgcolor="#A8B625" cellpadding="8" cellspacing="35" >
+				
+				<f:facet name="header">
+					<h:outputLabel value="KAYIT ALANI" />
+				</f:facet>
+				
+				<h:outputLabel value="Adınız : " />
+				<h:inputText id="txtadiniz" required="true" requiredMessage="Boş Geçmeyiniz" value="#{kayit.adiniz}">
+					
+					<f:ajax event="keyup" execute="txtadiniz" render="outputadi"/>
+					
+				</h:inputText>
+				<h:outputText id="outputadi" value="#{kayit.adiniz}" />
+				<h:message for="txtadiniz"  errorStyle="color:red;"/>
+				
+				
+				<h:outputText value="Soyadınız : " />
+				<h:inputText id="txtsoyadiniz" required="true" requiredMessage="Soyadı Boş geçilemez." value="#{kayit.soyadiniz}" >
+					<f:ajax  event="dblclick" execute="txtsoyadiniz" render="outputsoyadi" />
+				</h:inputText>
+				<h:outputText id="outputsoyadi" value="#{kayit.soyadiniz}" />
+				<h:message for="txtsoyadiniz" errorStyle="color:red;"/>
+				
+				<h:outputLabel value="Adres : " />
+				<h:inputTextarea id="txtadres"  required="true" requiredMessage="Adres alanı boş geçilemez." value="#{kayit.adres}"  cols="45" rows="10">
+					<f:ajax event="mousemove" execute="txtadres" render="outputadres" />
+				</h:inputTextarea>
+				<h:outputText id="outputadres" value="#{kayit.adres}" />
+				<h:message for="txtadres" errorStyle="color:red;"/>
+				
+				<h:outputLabel value="Kimlik NO :" />
+				<h:inputSecret id="txtkimlikno"  required="true"  requiredMessage="TC NO Boş geçilemez." value="#{kayit.kimlikno}" >
+					
+				</h:inputSecret>
+				<h:outputText id="outpurkimlikno"  value="#{kayit.kimlikno}" />
+				<h:message for="txtkimlikno"/>
+				
+				
+				<h:outputLabel value="Cinsiyet :" />
+				<h:selectOneRadio id="txtcinsiyet" required="true" requiredMessage="Cinsiyet alanı BOş geçilemez." value="#{kayit.cinsiyet}">
+					<f:selectItem itemLabel="Tanımsız" itemValue="tanimsiz" />
+					<f:selectItem itemLabel="Kadın"    itemValue="kadin" />
+					<f:selectItem itemLabel="Erkek"    itemValue="erkek" />
+				</h:selectOneRadio>
+				<h:outputText id="outputcinsiyet" />
+				<h:message for="txtcinsiyet" errorClass="hataRengi" />
+				
+				<h:outputLabel  value="Şehir : " />
+				<h:selectOneMenu id="txtsehir" required="true" requiredMessage="Şehir boş geçilemez." value="#{kayit.sehir}">
+					<f:selectItem itemLabel="Ankara" itemValue="ankara" />
+					<f:selectItem itemLabel="İstanbul" itemValue="istanbul"  />
+					<f:selectItem itemLabel="Malatya" itemValue="malatya"  />
+				</h:selectOneMenu>
+				<h:outputText id="outputsehir" />
+				<h:message for="txtsehir" errorClass="hataRengi"/>
+				
+				<h:outputFormat value="{0} {1} :">
+					<f:param  value="Takım"/>
+					<f:param value="Seçiniz" />
+				</h:outputFormat>
+				<h:selectOneRadio id="txttakim" required="true" requiredMessage="Takım alanı boş geçilemez." value="#{kayit.takim}">
+					<f:selectItem  itemLabel="Galatasaray" itemValue="galatasaray" />
+					<f:selectItem  itemLabel="Fenerbahçe" itemValue="fenerbahce" />
+					<f:selectItem  itemLabel="Beşiktaş" itemValue="besiktas" />
+					<f:selectItem  itemLabel="Trabzonspor" itemValue="trabzonspor" itemDescription="Takım bilgisi içerir = Trabzonspor" />
+				</h:selectOneRadio>
+				<h:outputText id="outputakim" />
+			<h:message for="txttakim" errorClass="hataRengi"/>
+				
+				<h:outputLabel value="Kullandığın Prog. Dilleri :" />
+				<h:selectManyCheckbox id="txtdil"   value="#{kayit.diller}">
+					<f:selectItem itemLabel="PHP" itemValue="php"/>
+					<f:selectItem itemLabel="Java" itemValue="java" />
+					<f:selectItem itemLabel="C++" itemValue="c++" />
+					<f:selectItem itemLabel="C#" itemValue="c#" />
+				</h:selectManyCheckbox>
+				<h:outputText id="outputdil" />
+				<h:message for="txtdil"/>
+				
+				<h:outputFormat value="{0}">
+					<f:param value="Kullanılan Kütüphaneler : " />
+				</h:outputFormat>
+				<h:selectManyListbox id="txtkutup" value="#{kayit.kutuphane}">
+					<f:selectItem itemLabel="Hibernate" itemValue="hibernate"/>
+					<f:selectItem itemLabel="Jersey" itemValue="jersey" />
+					<f:selectItem itemLabel="Resteasy" itemValue="Resteasy" />
+					<f:selectItem itemLabel="NHibernate" itemValue="nhibernate" />
+					<f:selectItem itemLabel="Log4j" itemValue="log4j" />
+					<f:selectItem itemLabel="Slf4j" itemValue="Slf4j" />
+				</h:selectManyListbox>
+				<h:outputText id="outputkutup" />
+				<h:message for="txtkutup"/>
+				
+
+				
+				
+				<h:commandButton  action="#{kayit.ActionSonucu()}" value="Verileri Kaydet" />
+				
+				<f:facet name="footer">
+					<h:outputText value="FOOTER ALANI" />
+				</f:facet>	
+				
+				
+			</h:panelGrid>
+			
+		
+		</h:form>
+		
+	
+
+</body> 
+</html>

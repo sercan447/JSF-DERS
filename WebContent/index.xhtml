@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+	<h:outputStylesheet name="css/style.css" />
+
+</h:head> 
+<h:body> 
+
+
+
+	<h:form>
+		
+		<h:dataTable var="o" value="#{anasayfa.liste}" headerClass="baslik" cellpadding="25" border="2">
+				
+				<h:column>
+					<f:facet name="header">Adınız</f:facet>
+					#{o.adiniz}
+				
+				</h:column>
+				<h:column>
+				<f:facet name="header">Soyadiniz</f:facet>
+					#{o.soyadiniz}
+				
+				</h:column>
+				<h:column >
+				<f:facet name="header">Cinsiyet</f:facet>
+					#{o.cinsiyet}
+					
+				</h:column>
+				<h:column>
+				<f:facet name="header">Şehir</f:facet>
+					#{o.sehir}
+				</h:column>
+				
+		</h:dataTable>
+		
+		<ui:repeat var="pers" value="#{anasayfa.liste}" >
+			
+				<table border="1">
+					
+					<tr>
+						<td>
+						#{pers.adres}
+						</td>
+					
+						<td>
+						#{pers.kimlikno}
+						</td>
+				
+						<td>
+						#{pers.takim}
+						</td>
+					
+						<td>
+						#{pers.diller}
+						</td>	
+						<td>
+						#{pers.kutuphane}
+						</td>
+					</tr>
+				</table>
+					
+		</ui:repeat>
+	
+		<h:commandButton action="second.xhtml?faces-redirect=true" value="Second Page" />
+		
+	</h:form>
+	
+	
+
+	
+	
+	
+	
+	
+
+</h:body> 
+</html>
